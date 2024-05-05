@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Sikhi') }}</title>
+    <title>{{ config('app.name', 'Unifiedtransform') }}</title>
 
     <link rel="shortcut icon" href="{{asset('favicon_io/favicon.ico')}}">
     <link rel="shortcut icon" sizes="16x16" href="{{asset('favicon_io/favicon-16x16.png')}}">
@@ -42,12 +42,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     @auth
-                        
+                        @php
+                            $latest_school_session = \App\Models\SchoolSession::latest()->first();
+                            $current_school_session_name = null;
+                            if($latest_school_session){
+                                $current_school_session_name = $latest_school_session->session_name;
+                            }
+                        @endphp
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             @if (session()->has('browse_session_name') && session('browse_session_name') !== $current_school_session_name)
                                 <a class="nav-link text-danger disabled" href="#" tabindex="-1" aria-disabled="true"><i class="bi bi-exclamation-diamond-fill me-2"></i> Browsing as Academic Session {{session('browse_session_name')}}</a>
-                            
+                            @elseif(\App\Models\SchoolSession::latest()->count() > 0)
+                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Current Academic Session {{$current_school_session_name}}</a>
+                            @else
                                 <a class="nav-link text-danger disabled" href="#" tabindex="-1" aria-disabled="true"><i class="bi bi-exclamation-diamond-fill me-2"></i> Create an Academic Session.</a>
                             @endif
                         </li>
@@ -70,16 +78,16 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="">
+                                    <a class="dropdown-item" href="{{route('password.edit')}}">
                                         <i class="bi bi-key me-2"></i> Change Password
                                     </a>
-                                    <a class="dropdown-item" href=""
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         <i class="bi bi-door-open me-2"></i> {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -95,7 +103,7 @@
     </div>
 
     <div id="watermark">
-        <p>Sikhi</p>
+        <p>Unifiedtransform</p>
     </div>
 </body>
 </html>
