@@ -10,7 +10,7 @@
                     <h1 class="display-6 mb-3"><i class="bi bi-file-plus"></i> Create Exam</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Create Exam</li>
                         </ol>
                     </nav>
@@ -18,13 +18,14 @@
                     <div class="row">
                         <div class="col-md-5 mb-4">
                             <div class="p-3 border bg-light shadow-sm">
-                                <form action="{{route('exam.create')}}" method="POST">
+                                <form action="{{route('exam.store')}}" method="POST">
                                     @csrf
                                     <input type="hidden" name="session_id" value="{{$current_school_session_id}}">
                                     <div>
                                         <p>Select Semester:<sup><i class="bi bi-asterisk text-primary"></i></sup></p>
                                         <select class="form-select" name="semester_id">
                                             @isset($semesters)
+                                            <option selected disabled>Please select a Semester</option>
                                                 @foreach ($semesters as $semester)
                                                 <option value="{{$semester->id}}">{{$semester->semester_name}}</option>
                                                 @endforeach
@@ -33,7 +34,7 @@
                                     </div>
                                     <div>
                                         <p class="mt-2">Select class:<sup><i class="bi bi-asterisk text-primary"></i></sup></p>
-                                        <select onchange="getCourses(this);" class="form-select" name="class_id">
+                                        <select  class="form-select" name="class_id">
                                             @isset($classes)
                                                 <option selected disabled>Please select a class</option>
                                                 @foreach ($classes as $school_class)
@@ -74,7 +75,6 @@
     function getCourses(obj) {
         var class_id = obj.options[obj.selectedIndex].value;
 
-        var url = "{{route('get.sections.courses.by.classId')}}?class_id=" + class_id 
 
         fetch(url)
         .then((resp) => resp.json())

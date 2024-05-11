@@ -23,7 +23,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <script src="{{ asset("js/jquery-3.6.0.min.js") }}"></script>
    
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -105,7 +105,6 @@
     <div id="watermark">
         <p>Sikhi</p>
     </div>
-<script src="{{ asset("js/jquery-3.6.0.min.js") }}"></script>
 
 </body>
 </html>

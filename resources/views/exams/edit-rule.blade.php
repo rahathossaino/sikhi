@@ -10,7 +10,7 @@
                     <h1 class="display-6 mb-3"><i class="bi bi-file-plus"></i> Edit Exam Rule</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{url()->previous()}}">Exams Rules</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Edit Exam Rule</li>
                         </ol>

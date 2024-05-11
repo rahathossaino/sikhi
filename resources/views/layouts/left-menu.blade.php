@@ -94,14 +94,14 @@
                             <i class="ms-auto d-inline d-sm-none d-md-none d-xl-inline bi bi-chevron-down"></i>
                         </a>
                         <ul class="nav collapse {{ request()->is('exams*')? 'show' : 'hide' }} bg-white" id="exam-grade-submenu">
-                            <li class="nav-item w-100" ><a class="nav-link" href=""><i class="bi bi-file-text me-2"></i> View Exams</a></li>
+                            <li class="nav-item w-100" ><a class="nav-link" href="{{ route('exam.list') }}"><i class="bi bi-file-text me-2"></i> View Exams</a></li>
                             @if (Auth::user()->role == "admin" || Auth::user()->role == "teacher")
-                            <li class="nav-item w-100" ><a class="nav-link" href=""><i class="bi bi-file-plus me-2"></i> Create Exams</a></li>
+                            <li class="nav-item w-100" ><a class="nav-link" href="{{ route('exam.create') }}"><i class="bi bi-file-plus me-2"></i> Create Exams</a></li>
                             @endif
                             @if (Auth::user()->role == "admin")
-                            <li class="nav-item w-100" ><a class="nav-link" href=""><i class="bi bi-file-plus me-2"></i> Add Grade Systems</a></li>
+                            <li class="nav-item w-100" ><a class="nav-link" href="{{ route('exam.grade.system.create') }}"><i class="bi bi-file-plus me-2"></i> Add Grade Systems</a></li>
                             @endif
-                            <li class="nav-item w-100" ><a class="nav-link" href=""><i class="bi bi-file-ruled me-2"></i> View Grade Systems</a></li>
+                            <li class="nav-item w-100" ><a class="nav-link" href="{{ route('exam.grade.system.list') }}"><i class="bi bi-file-ruled me-2"></i> View Grade Systems</a></li>
                         </ul>
                     </li>
                     {{-- <li class="nav-item border-bottom">
