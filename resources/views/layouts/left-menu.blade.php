@@ -32,9 +32,9 @@
                             <i class="ms-auto d-inline d-sm-none d-md-none d-xl-inline bi bi-chevron-down"></i>
                         </a>
                         <ul class="nav collapse {{ request()->is('students*')? 'show' : 'hide' }} bg-white" id="student-submenu">
-                            <li class="nav-item w-100" ><a class="nav-link" href=""><i class="bi bi-person-video2 me-2"></i> View Students</a></li>
+                            <li class="nav-item w-100" ><a class="nav-link" href="{{ route('student.list') }}"><i class="bi bi-person-video2 me-2"></i> View Students</a></li>
                             @if (!session()->has('browse_session_id') && Auth::user()->role == "admin")
-                            <li class="nav-item w-100" ><a class="nav-link" href=""><i class="bi bi-person-plus me-2"></i> Add Student</a></li>
+                            <li class="nav-item w-100" ><a class="nav-link" href="{{ route('student.create') }}"><i class="bi bi-person-plus me-2"></i> Add Student</a></li>
                             @endif
                         </ul>
                     </li>

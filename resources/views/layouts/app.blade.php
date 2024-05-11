@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Sikhi') }}</title>
+    <title>Sikhi</title>
 
     <link rel="shortcut icon" href="{{asset('favicon_io/favicon.ico')}}">
     <link rel="shortcut icon" sizes="16x16" href="{{asset('favicon_io/favicon-16x16.png')}}">
@@ -32,8 +32,8 @@
     <div id="app">
         <nav class="navbar sticky-top navbar-expand-md navbar-light bg-white border-btm-e6">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <i class="bi bi-house"></i> {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand" href="{{ route('dashboard') }}">
+                    <i class="bi bi-house"></i> Sikhi
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -103,7 +103,9 @@
     </div>
 
     <div id="watermark">
-        <p>Unifiedtransform</p>
+        <p>Sikhi</p>
     </div>
+<script src="{{ asset("js/jquery-3.6.0.min.js") }}"></script>
+
 </body>
 </html>

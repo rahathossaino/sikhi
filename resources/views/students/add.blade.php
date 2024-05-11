@@ -12,7 +12,7 @@
                     </h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add Student</li>
                         </ol>
                     </nav>
@@ -23,7 +23,7 @@
                         <small><i class="bi bi-exclamation-diamond-fill me-2"></i> Remember to create related "Class" and "Section" before adding student</small>
                     </p>
                     <div class="mb-4">
-                        <form class="row g-3" action="{{route('school.student.create')}}" method="POST">
+                        <form class="row g-3" action="{{route('student.create')}}" method="POST">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-md-3">
@@ -140,7 +140,7 @@
                                 <h6>Academic Information</h6>
                                 <div class="col-md-6">
                                     <label for="inputAssignToClass" class="form-label">Assign to class:<sup><i class="bi bi-asterisk text-primary"></i></sup></label>
-                                    <select onchange="getSections(this);" class="form-select" id="inputAssignToClass" name="class_id" required>
+                                    <select  class="form-select" id="inputAssignToClass" name="class_id" required>
                                         @isset($school_classes)
                                             <option selected disabled>Please select a class</option>
                                             @foreach ($school_classes as $school_class)
@@ -152,6 +152,7 @@
                                 <div class="col-md-6">
                                     <label for="inputAssignToSection" class="form-label">Assign to section:<sup><i class="bi bi-asterisk text-primary"></i></sup></label>
                                     <select class="form-select" id="inputAssignToSection" name="section_id" required>
+
                                     </select>
                                 </div>
                                 <div class="col-md-12">
@@ -174,25 +175,19 @@
     </div>
 </div>
 <script>
-    function getSections(obj) {
-        var class_id = obj.options[obj.selectedIndex].value;
-
-        var url = "{{route('get.sections.courses.by.classId')}}?class_id=" + class_id 
-
-        fetch(url)
-        .then((resp) => resp.json())
-        .then(function(data) {
-            var sectionSelect = document.getElementById('inputAssignToSection');
-            sectionSelect.options.length = 0;
-            data.sections.unshift({'id': 0,'section_name': 'Please select a section'})
-            data.sections.forEach(function(section, key) {
-                sectionSelect[key] = new Option(section.section_name, section.id);
-            });
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
-    }
+    // $(document).ready(function(){
+    //   $("#inputAssignToClass").change(function(){
+    //     var newValue = $(this).val();
+    //     console.log("New value: " + newValue);
+    //     // You can do something with the new value here
+    //   });
+    // });
+    $(document).ready(function(){
+      
+        console.log("New value:loaded ");
+      
+    });
+    
 </script>
 @include('components.photos.photo-input')
 @endsection
