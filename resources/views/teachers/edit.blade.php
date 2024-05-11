@@ -12,7 +12,7 @@
                     </h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="{{url()->previous()}}">Teacher List</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Edit Teacher</li>
                         </ol>
@@ -21,7 +21,7 @@
                     @include('session-messages')
 
                     <div class="mb-4">
-                        <form class="row g-3" action="{{route('school.teacher.update')}}" method="POST">
+                        <form class="row g-3" action="{{ route('teacher.update') }}" method="POST">
                             @csrf
                             <input type="hidden" name="teacher_id" value="{{$teacher->id}}">
                             <div class="col-3">

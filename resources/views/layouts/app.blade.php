@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Unifiedtransform') }}</title>
+    <title>{{ config('app.name', 'Sikhi') }}</title>
 
     <link rel="shortcut icon" href="{{asset('favicon_io/favicon.ico')}}">
     <link rel="shortcut icon" sizes="16x16" href="{{asset('favicon_io/favicon-16x16.png')}}">
@@ -67,7 +67,7 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="">{{ __('Login') }}</a>
                                 </li>
                             @endif
                         @else
@@ -78,16 +78,16 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{route('password.edit')}}">
+                                    <a class="dropdown-item" href="">
                                         <i class="bi bi-key me-2"></i> Change Password
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item" href=""
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         <i class="bi bi-door-open me-2"></i> {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>

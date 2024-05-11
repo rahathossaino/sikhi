@@ -31,7 +31,7 @@ class AttendanceController extends Controller
         SchoolClassInterface $schoolClassRepository,
         SectionInterface $sectionRepository
     ) {
-        $this->middleware(['can:view attendances']);
+        // $this->middleware(['can:view attendances']);
 
         $this->userRepository = $userRepository;
         $this->academicSettingRepository = $academicSettingRepository;

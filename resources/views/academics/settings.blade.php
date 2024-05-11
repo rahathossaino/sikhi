@@ -23,7 +23,7 @@
                                     <p class="text-danger">
                                         <small><i class="bi bi-exclamation-diamond-fill me-2"></i> Create one Session per academic year. Last created session will be considered as the latest academic session.</small>
                                     </p>
-                                    <form action="{{route('school.session.store')}}" method="POST">
+                                    <form action="{{ route('session.store') }}"  method="POST">
                                         @csrf
                                         <div class="mb-3">
                                             <input type="text" class="form-control form-control-sm" placeholder="2021 - 2022" aria-label="Current Session" name="session_name" required>
@@ -39,7 +39,7 @@
                                     <p class="text-danger">
                                         <small><i class="bi bi-exclamation-diamond-fill me-2"></i> Only use this when you want to browse data from previous Sessions.</small>
                                     </p>
-                                    <form action="{{route('school.session.browse')}}" method="POST">
+                                    <form action="" method="POST">
                                         @csrf
                                     <div class="mb-3">
                                         <p class="mt-2">Select "Session" to browse by:</p>
@@ -59,7 +59,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="p-3 border bg-light shadow-sm">
                                     <h6>Create Semester for Current Session</h6>
-                                    <form action="{{route('school.semester.create')}}" method="POST">
+                                    <form action="{{ route('semester.store') }}" method="POST">
                                         @csrf
                                     <input type="hidden" name="session_id" value="{{$current_school_session_id}}">
                                     <div class="mt-2">
@@ -84,16 +84,16 @@
                                     <p class="text-danger">
                                         <small><i class="bi bi-exclamation-diamond-fill me-2"></i> Do not change the type in the middle of a Semester.</small>
                                     </p>
-                                    <form action="{{route('school.attendance.type.update')}}" method="POST">
+                                    <form action="{{ route('attatndence.update') }}" method="POST">
                                         @csrf
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="attendance_type" id="attendance_type_section" {{($academic_setting->attendance_type == 'section')?'checked="checked"':null}} value="section">
+                                            <input class="form-check-input" type="radio" name="attendance_type" id="attendance_type_section"  value="section">
                                             <label class="form-check-label" for="attendance_type_section">
                                                 Attendance by Section
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="attendance_type" id="attendance_type_course" {{($academic_setting->attendance_type == 'course')?'checked="checked"':null}} value="course">
+                                            <input class="form-check-input" type="radio" name="attendance_type" id="attendance_type_course"  value="course">
                                             <label class="form-check-label" for="attendance_type_course">
                                                 Attendance by Course
                                             </label>
@@ -106,7 +106,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="p-3 border bg-light shadow-sm">
                                     <h6>Create Class</h6>
-                                    <form action="{{route('school.class.create')}}" method="POST">
+                                    <form action="{{ route('class.store') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="session_id" value="{{$current_school_session_id}}">
                                         <div class="mb-3">
@@ -119,7 +119,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="p-3 border bg-light shadow-sm">
                                 <h6>Create Section</h6>
-                                    <form action="{{route('school.section.create')}}" method="POST">
+                                    <form action="{{ route('section.store') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="session_id" value="{{$current_school_session_id}}">
                                         <div class="mb-3">
@@ -145,7 +145,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="p-3 border bg-light shadow-sm">
                                     <h6>Create Course</h6>
-                                    <form action="{{route('school.course.create')}}" method="POST">
+                                    <form action="{{ route('course.store') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="session_id" value="{{$current_school_session_id}}">
                                         <div class="mb-1">
@@ -187,7 +187,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="p-3 border bg-light shadow-sm">
                                     <h6>Assign Teacher</h6>
-                                    <form action="{{route('school.teacher.assign')}}" method="POST">
+                                    <form action="{{ route('teacher.assign') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="session_id" value="{{$current_school_session_id}}">
                                         <div class="mb-3">
@@ -224,11 +224,23 @@
                                         <div>
                                             <p class="mt-2">Assign to section:<sup><i class="bi bi-asterisk text-primary"></i></sup></p>
                                             <select class="form-select form-select-sm" id="section-select" aria-label=".form-select-sm" name="section_id" required>
+                                                @if ($school_sections->isNotEmpty())
+                                                    <option >Select a section</option>
+                                                    @foreach ($school_sections as $school_section)
+                                                        <option value="{{ $school_section->id }}">{{ $school_section->section_name }}</option>
+                                                    @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                         <div>
                                             <p class="mt-2">Assign to course:<sup><i class="bi bi-asterisk text-primary"></i></sup></p>
                                             <select class="form-select form-select-sm" id="course-select" aria-label=".form-select-sm" name="course_id" required>
+                                            @if ($school_sections->isNotEmpty())
+                                                    <option >Select a course</option>
+                                                    @foreach ($courses as $courses)
+                                                        <option value="{{ $courses->id }}">{{ $courses->course_name }}</option>
+                                                    @endforeach
+                                            @endif
                                             </select>
                                         </div>
                                         <button type="submit" class="mt-3 btn btn-sm btn-outline-primary"><i class="bi bi-check2"></i> Save</button>
@@ -238,7 +250,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="p-3 border bg-light shadow-sm">
                                     <h6>Allow Final Marks Submission</h6>
-                                    <form action="{{route('school.final.marks.submission.status.update')}}" method="POST">
+                                    <form action="" method="POST">
                                         @csrf
                                         <p class="text-danger">
                                             <small><i class="bi bi-exclamation-diamond-fill me-2"></i> Usually teachers are allowed to submit final marks just before the end of a "Semester".</small>
@@ -247,8 +259,8 @@
                                             <small><i class="bi bi-exclamation-diamond-fill me-2"></i> Disallow at the start of a "Semester".</small>
                                         </p>
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" name="marks_submission_status" id="marks_submission_status_check" {{($academic_setting->marks_submission_status == 'on')?'checked="checked"':null}}>
-                                            <label class="form-check-label" for="marks_submission_status_check">{{($academic_setting->marks_submission_status == 'on')?'Allowed':'Disallowed'}}</label>
+                                            <input class="form-check-input" type="checkbox" name="marks_submission_status" id="marks_submission_status_check" >
+                                            <label class="form-check-label" for="marks_submission_status_check"></label>
                                         </div>
                                         <button type="submit" class="mt-3 btn btn-sm btn-outline-primary"><i class="bi bi-check2"></i> Save</button>
                                     </form>
@@ -267,7 +279,7 @@
     function getSectionsAndCourses(obj) {
         var class_id = obj.options[obj.selectedIndex].value;
 
-        var url = "{{route('get.sections.courses.by.classId')}}?class_id=" + class_id 
+        var url = "?class_id=" + class_id 
 
         fetch(url)
         .then((resp) => resp.json())

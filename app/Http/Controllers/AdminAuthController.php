@@ -22,6 +22,9 @@ class AdminAuthController extends Controller
             if($validate->passes()){
                 if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
                     if(Auth::user()->role=="admin"){
+                        if(session('admin_redirect_url')){
+                            return redirect(session('admin_redirect_url'));
+                        }
                         return redirect()->route('dashboard');
                     }
                 }

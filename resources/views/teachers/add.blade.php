@@ -12,15 +12,14 @@
                     </h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add Teacher</li>
                         </ol>
                     </nav>
 
                     @include('session-messages')
-
                     <div class="mb-4">
-                        <form class="row g-3" action="{{route('school.teacher.create')}}" method="POST">
+                        <form class="row g-3" action="{{ route('teacher.store') }}" method="POST">
                             @csrf
                             <div class="col-md-3">
                                 <label for="inputFirstName" class="form-label">First Name<sup><i class="bi bi-asterisk text-primary"></i></sup></label>
