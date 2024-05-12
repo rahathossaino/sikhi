@@ -20,7 +20,7 @@
 
                     @include('session-messages')
                     <div class="mb-4">
-                        <form class="row g-3" action="{{route('school.student.update')}}" method="POST">
+                        <form class="row g-3" action="{{route('student.update')}}" method="POST">
                             @csrf
                             <input type="hidden" name="student_id" value="{{$student->id}}">
                             <div class="row g-3">

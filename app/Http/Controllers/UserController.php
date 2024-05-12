@@ -67,7 +67,7 @@ class UserController extends Controller
                 'studentList'       => $studentList,
                 'school_classes'    => $school_classes,
             ];
-
+            
             return view('students.list', $data);
         } catch (\Exception $e) {
             return back()->withError($e->getMessage());
@@ -98,7 +98,6 @@ class UserController extends Controller
         return view('teachers.profile', $data);
     }
 
-
     public function createStudent() {
         $current_school_session_id = $this->getSchoolCurrentSession();
 
@@ -122,7 +121,6 @@ class UserController extends Controller
     {
         try {
             $this->userRepository->createStudent($request->validated());
-
             return back()->with('status', 'Student creation was successful!');
         } catch (\Exception $e) {
             return back()->withError($e->getMessage());
@@ -136,7 +134,6 @@ class UserController extends Controller
         $promotionRepository = new PromotionRepository();
         $current_school_session_id = $this->getSchoolCurrentSession();
         $promotion_info = $promotionRepository->getPromotionInfoById($current_school_session_id, $student_id);
-
         $data = [
             'student'       => $student,
             'parent_info'   => $parent_info,
@@ -167,7 +164,6 @@ class UserController extends Controller
     public function updateTeacher(Request $request) {
         try {
             $this->userRepository->updateTeacher($request->toArray());
-
             return back()->with('status', 'Teacher update was successful!');
         } catch (\Exception $e) {
             return back()->withError($e->getMessage());

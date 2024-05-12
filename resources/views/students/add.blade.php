@@ -23,7 +23,7 @@
                         <small><i class="bi bi-exclamation-diamond-fill me-2"></i> Remember to create related "Class" and "Section" before adding student</small>
                     </p>
                     <div class="mb-4">
-                        <form class="row g-3" action="{{route('student.store')}}" method="POST">
+                        <form class="row g-3" action="{{route('student.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-md-3">
@@ -44,9 +44,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="formFile" class="form-label">Photo</label>
-                                    <input class="form-control" type="file" id="formFile" onchange="previewFile()">
-                                    <div id="previewPhoto"></div>
-                                    <input type="hidden" id="photoHiddenInput" name="photo" value="">
+                                    <input class="form-control" type="file" id="formFile"  name="photo">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="inputBirthday" class="form-label">Birthday<sup><i class="bi bi-asterisk text-primary"></i></sup></label>
