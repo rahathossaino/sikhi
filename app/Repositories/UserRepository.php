@@ -74,7 +74,7 @@ class UserRepository implements UserInterface {
                     $photo = $request["photo"];
                     $ext = $photo->getClientOriginalExtension();
                     $image = uniqid().'.'.$ext;
-                    $imageUrl = public_path().'/upload/student/'.$image;
+                    $imageUrl = 'upload/student/'.$image;
                     $photo->move(public_path().'/upload/student/', $image);
                 }
                 $student = User::create([

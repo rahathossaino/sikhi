@@ -30,7 +30,7 @@
                                 <div class="card bg-light">
                                     <div class="px-5 pt-2">
                                         @if (isset($student->photo))
-                                            <img src="{{asset('/storage'.$student->photo)}}" class="rounded-3 card-img-top" alt="Profile photo">
+                                            <img src="{{asset($student->photo)}}" class="rounded-3 card-img-top" alt="Profile photo">
                                         @else
                                             <img src="{{asset('imgs/profile.png')}}" class="rounded-3 card-img-top" alt="Profile photo">
                                         @endif

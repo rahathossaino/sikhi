@@ -60,9 +60,7 @@ class UserController extends Controller
         try{
 
             $school_classes = $this->schoolClassRepository->getAllBySession($current_school_session_id);
-
             $studentList = $this->userRepository->getAllStudents($current_school_session_id, $class_id, $section_id);
-
             $data = [
                 'studentList'       => $studentList,
                 'school_classes'    => $school_classes,
