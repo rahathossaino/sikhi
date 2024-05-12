@@ -37,6 +37,7 @@ Route::group(['prefix'=>'admin'],function(){
         //section
         Route::post('section/store', [SectionController::class, 'store'])->name('section.store');
         Route::post('section/update', [SectionController::class, 'update'])->name('section.update');
+        Route::get('/section/{id}', [SectionController::class, 'getByClassId'])->name('get.sections.courses.by.classId');
 
         // Courses
         Route::post('course/store', [CourseController::class, 'store'])->name('course.store');

@@ -23,7 +23,7 @@
                         <small><i class="bi bi-exclamation-diamond-fill me-2"></i> Remember to create related "Class" and "Section" before adding student</small>
                     </p>
                     <div class="mb-4">
-                        <form class="row g-3" action="{{route('student.create')}}" method="POST">
+                        <form class="row g-3" action="{{route('student.store')}}" method="POST">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-md-3">
@@ -152,7 +152,7 @@
                                 <div class="col-md-6">
                                     <label for="inputAssignToSection" class="form-label">Assign to section:<sup><i class="bi bi-asterisk text-primary"></i></sup></label>
                                     <select class="form-select" id="inputAssignToSection" name="section_id" required>
-
+                                        <option selected disabled>Please select a section</option>
                                     </select>
                                 </div>
                                 <div class="col-md-12">
@@ -175,19 +175,29 @@
     </div>
 </div>
 <script>
-    // $(document).ready(function(){
-    //   $("#inputAssignToClass").change(function(){
-    //     var newValue = $(this).val();
-    //     console.log("New value: " + newValue);
-    //     // You can do something with the new value here
-    //   });
-    // });
+
     $(document).ready(function(){
-      
-        console.log("New value:loaded ");
-      
+        $('#inputAssignToClass').change(function(){
+            var classId = $(this).val(); 
+            var url = '{{ route("get.sections.courses.by.classId", "classId") }}'; 
+            url = url.replace('classId', classId);
+            $.ajax({
+                url:url ,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    if(response.sections){
+                        var sectionsDropdown = $('#inputAssignToSection');
+                        sectionsDropdown.empty(); 
+                        sectionsDropdown.append($('<option>').text('Please select a section').attr('value', 0))
+                        response.sections.forEach(function(section) {
+                            sectionsDropdown.append($('<option>').text(section.section_name).attr('value', section.id));
+                        });
+                    }
+                }
+            })            
+        })
     });
-    
 </script>
 @include('components.photos.photo-input')
 @endsection

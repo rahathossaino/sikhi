@@ -68,10 +68,10 @@ class SectionController extends Controller
         }
     }
 
-    public function getByClassId(Request $request) {
-        $sections = $this->schoolSectionRepository->getAllByClassId($request->query('class_id', 0));
-        $courses = $this->courseRepository->getByClassId($request->query('class_id', 0));
-
+    public function getByClassId($id) {
+        
+        $sections = $this->schoolSectionRepository->getAllByClassId($id);
+        $courses = $this->courseRepository->getByClassId($id);
         return response()->json(['sections' => $sections, 'courses' => $courses]);
     }
 
