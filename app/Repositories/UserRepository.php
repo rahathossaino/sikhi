@@ -23,6 +23,14 @@ class UserRepository implements UserInterface {
     public function createTeacher($request) {
         try {
             DB::transaction(function () use ($request) {
+                $imageUrl="";
+                if(!empty($request["photo"])){
+                    $photo = $request["photo"];
+                    $ext = $photo->getClientOriginalExtension();
+                    $image = uniqid().'.'.$ext;
+                    $imageUrl = 'upload/teacher/'.$image;
+                    $photo->move(public_path().'/upload/teacher/', $image);
+                }
                 $user = User::create([
                     'first_name'    => $request['first_name'],
                     'last_name'     => $request['last_name'],
@@ -34,7 +42,7 @@ class UserRepository implements UserInterface {
                     'address2'      => $request['address2'],
                     'city'          => $request['city'],
                     'zip'           => $request['zip'],
-                    'photo'         => (!empty($request['photo']))?$this->convert($request['photo']):null,
+                    'photo'         => (!empty($request['photo'])) ? $imageUrl:null,
                     'role'          => 'teacher',
                     'password'      => Hash::make($request['password']),
                 ]);
