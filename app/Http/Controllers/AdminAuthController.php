@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 class AdminAuthController extends Controller
 {
     public function login(){
+        if(Auth::check()){
+            return redirect()->back();
+        }
         return view('admin');
     }
     public function process(Request $request){

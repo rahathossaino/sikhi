@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>SMS-Sikhi</title>
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
+        <script src="{{ asset("js/jquery-3.6.0.min.js") }}"></script>
     <style>
         body{
             background-color: #EDEDFB;
@@ -95,7 +95,7 @@
             flex-direction: column;
             gap: 2rem;
             width: 70%;
-            
+            position: relative;
         }
         .signin form .input{
             display: flex;
@@ -103,7 +103,7 @@
             gap: 0.7rem;
         }
         .signin form .input input{
-            padding: 0.7rem 1rem;
+            padding: 0.7rem 0.9rem;
             border-radius: 5px;
             border: 0.5px solid #C0C0C0;
             outline: none;
@@ -116,7 +116,7 @@
             color: blue;
             text-decoration: none;
         }
-        .btn{
+        .button{
             padding: 0.9rem 1rem;
             border-radius: 20px;
             border: none;
@@ -126,10 +126,33 @@
             cursor: pointer;
             font-size: 1rem;
         }
-        .btn:hover{
+        .button:hover{
             transition: all 0.5s;
             background-color:#D3D3D3;
         }
+        #loader {
+                width: 36px;
+                height: 36px;
+                border: 5px solid gray;
+                border-bottom-color: transparent;
+                border-radius: 50%;
+                display: inline-block;
+                box-sizing: border-box;
+                animation: rotation 1s linear infinite;
+                position: absolute;
+                bottom: 0.4rem;
+                left: 9.4rem;
+                display: none;
+                }
+
+                @keyframes rotation {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
         .signin p{
             margin-top: 2rem;
         }
@@ -138,7 +161,7 @@
         
     </head>
     <body>
-        <div class="container">
+        <div>
            <div class="main">
             <div class="info">
                 <h1>Welcome to Sikhi SMS</h1>
@@ -178,11 +201,31 @@
                         </div>
                             <a href="" >Forgot Password?</a>
                     </div>
-                    <button type="submit" class="btn">Sign in</button>
+                    <button type="submit" class="button">Sign in</button>
+                    <span id="loader"></span>
                 </form>
                 <p>Web App Version: 2.1.88</p>
             </div>
            </div>
         </div>
+        <script>
+            $(document).ready(function(){
+                $('.button').click(function(){
+                    $(this).css({
+                        'padding': '0.9rem 1rem',
+                        'border-radius': '20px',
+                        'border': 'none', 
+                        'outline': 'none', 
+                        'color': '#0000CD',
+                        'background-color': '#0000CD', 
+                        'cursor': 'pointer',
+                        'font-size': '1rem'
+                    })
+                    $('#loader').css({
+                        'display': "block"
+                    });
+                })
+            })
+        </script>
     </body>
 </html>
