@@ -10,7 +10,7 @@
                     <h1 class="display-6 mb-3"><i class="bi bi-diagram-2"></i> Edit Section</h1>
                     @include('session-messages')
                     <div class="row">
-                        <form class="col-6" action="{{route('school.section.update')}}" method="POST">
+                        <form class="col-6" action="{{route('section.update')}}" method="POST">
                             @csrf
                             <input type="hidden" name="session_id" value="{{$current_school_session_id}}">
                             <input type="hidden" name="section_id" value="{{$section_id}}">

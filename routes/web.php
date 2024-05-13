@@ -32,18 +32,30 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::get('/academics/settings',[AcademicSettingController::class,'index'])->name('academic.setting');
         Route::post('session/store',[SchoolSessionController::class,'store'])->name('session.store');
-        Route::post('semester/store',[SemesterController::class,'store'])->name('semester.store');
+
+        //class
+        Route::get('/classes', [SchoolClassController::class, 'index'])->name('class.list');
         Route::post('class/store',[SchoolClassController::class,'store'])->name('class.store');
+        Route::get('/class/edit/{id}', [SchoolClassController::class, 'edit'])->name('class.edit');
+        Route::post('class/update', [SchoolClassController::class, 'update'])->name('class.update');
+
+        Route::post('semester/store',[SemesterController::class,'store'])->name('semester.store');
+        
         Route::post('attandence/update',[AcademicSettingController::class,'updateAttendanceType'])->name('attatndence.update');Route::post('section/create', [SectionController::class, 'store'])->name('section.create');
         
+
+
         //section
         Route::post('section/store', [SectionController::class, 'store'])->name('section.store');
+        Route::get('/section/edit/{id}', [SectionController::class, 'edit'])->name('section.edit');
         Route::post('section/update', [SectionController::class, 'update'])->name('section.update');
         Route::get('/section/{id}', [SectionController::class, 'getByClassId'])->name('get.sections.courses.by.classId');
 
         // Courses
         Route::post('course/store', [CourseController::class, 'store'])->name('course.store');
         Route::post('course/update', [CourseController::class, 'update'])->name('course.update');
+        Route::get('course/edit/{id}', [CourseController::class, 'edit'])->name('course.edit');
+
 
         //teacher
         Route::get('teacher/add',[AcademicSettingController::class,'create'])->name('teacher.create');

@@ -10,14 +10,14 @@
                     <h1 class="display-6 mb-3"><i class="bi bi-journal-medical"></i> Edit Course</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{url()->previous()}}">Courses</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Edit Course</li>
                         </ol>
                     </nav>
                     @include('session-messages')
                     <div class="row">
-                        <form class="col-6" action="{{route('school.course.update')}}" method="POST">
+                        <form class="col-6" action="{{route('course.update')}}" method="POST">
                             @csrf
                             <input type="hidden" name="session_id" value="{{$current_school_session_id}}">
                             <input type="hidden" name="course_id" value="{{$course_id}}">

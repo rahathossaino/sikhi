@@ -23,7 +23,7 @@
                                 }
                             }
                         @endphp
-                        <a class="nav-link d-flex {{ request()->is('classes')? 'active' : '' }}" href=""><i class="bi bi-diagram-3"></i> <span class="ms-2 d-inline d-sm-none d-md-none d-xl-inline">Classes</span> <span class="ms-auto d-inline d-sm-none d-md-none d-xl-inline">{{ $classCount }}</span></a>
+                        <a class="nav-link d-flex {{ request()->is('classes')? 'active' : '' }}" href="{{ route('class.list') }}"><i class="bi bi-diagram-3"></i> <span class="ms-2 d-inline d-sm-none d-md-none d-xl-inline">Classes</span> <span class="ms-auto d-inline d-sm-none d-md-none d-xl-inline">{{ $classCount }}</span></a>
                     </li>
                     @endcan
                     @if(Auth::user()->role != "student")

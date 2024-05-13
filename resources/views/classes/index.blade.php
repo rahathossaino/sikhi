@@ -10,7 +10,7 @@
                     <h1 class="display-6 mb-3"><i class="bi bi-diagram-3"></i> Classes</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Classes</li>
                         </ol>
                     </nav>
@@ -60,10 +60,10 @@
                                                                                     @endcan
                                                                                 </p>
                                                                                 <div class="list-group">
-                                                                                    <a href="{{route('student.list.show', ['class_id' => $school_class->id, 'section_id' => $school_section->id, 'section_name' => $school_section->section_name])}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                                                                    <a href="{{ route('student.list') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                                                                         View Students
                                                                                     </a>
-                                                                                    <a href="{{route('section.routine.show', ['class_id' => $school_class->id, 'section_id' => $school_section->id])}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                                                                    <a href="" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                                                                         View Routine
                                                                                     </a>
                                                                                 </div>
