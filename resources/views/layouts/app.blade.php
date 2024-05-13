@@ -81,15 +81,9 @@
                                     <a class="dropdown-item" href="">
                                         <i class="bi bi-key me-2"></i> Change Password
                                     </a>
-                                    <a class="dropdown-item" href=""
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        <i class="bi bi-door-open me-2"></i> {{ __('Logout') }}
+                                    <a class="dropdown-item" href="{{ route('admin.logout') }}">
+                                        <i class="bi bi-door-open me-2"></i>Logout
                                     </a>
-
-                                    <form id="logout-form" action="" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
                                 </div>
                             </li>
                         @endguest

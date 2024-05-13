@@ -12,7 +12,9 @@ class AdminAuthController extends Controller
 {
     public function login(){
         if(Auth::check()){
-            return redirect()->back();
+            if(Auth::user()->role=="admin"){
+                return redirect()->back();
+            }
         }
         return view('admin');
     }
@@ -37,6 +39,14 @@ class AdminAuthController extends Controller
         }
         catch(\Exception $e){
             return redirect()->back()->with('error',$e->getMessage());
+        }
+    }
+    public function logout(){
+        if(Auth::check()){
+            if(Auth::user()->role=="admin"){
+                Auth::logout();
+                return redirect()->route("admin.login");
+            }
         }
     }
 }

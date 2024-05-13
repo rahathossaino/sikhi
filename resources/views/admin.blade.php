@@ -216,8 +216,8 @@
                         'border-radius': '20px',
                         'border': 'none', 
                         'outline': 'none', 
-                        'color': '#0000CD',
-                        'background-color': '#0000CD', 
+                        'color': '#D3D3D3',
+                        'background-color': '#D3D3D3', 
                         'cursor': 'pointer',
                         'font-size': '1rem'
                     })

@@ -27,6 +27,8 @@ Route::group(['prefix'=>'admin'],function(){
     });
     Route::group(['middleware'=>'auth'],function(){
         Route::get('/home',[HomeController::class,'index'])->name('dashboard');
+        Route::get('/logout',[AdminAuthController::class,'logout'])->name('admin.logout');
+
 
         Route::get('/academics/settings',[AcademicSettingController::class,'index'])->name('academic.setting');
         Route::post('session/store',[SchoolSessionController::class,'store'])->name('session.store');
