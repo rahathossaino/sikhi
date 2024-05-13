@@ -96,10 +96,10 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/exams/grade/create', [GradingSystemController::class, 'create'])->name('exam.grade.system.create');
         Route::post('/exams/grade/store', [GradingSystemController::class, 'store'])->name('exam.grade.system.store');
         Route::get('/exams/grade', [GradingSystemController::class, 'index'])->name('exam.grade.system.list');
-        Route::get('/exams/grade/add-rule', [GradeRuleController::class, 'create'])->name('exam.grade.system.rule.create');
-        Route::post('/exams/grade/add-rule', [GradeRuleController::class, 'store'])->name('exam.grade.system.rule.store');
-        Route::get('/exams/grade/view-rules', [GradeRuleController::class, 'index'])->name('exam.grade.system.rule.show');
-        Route::post('/exams/grade/delete-rule', [GradeRuleController::class, 'destroy'])->name('exam.grade.system.rule.delete');
+        Route::get('/exams/grade/rules/add', [GradeRuleController::class, 'create'])->name('exam.grade.system.rule.create');
+        Route::post('/exams/grade/rule/store', [GradeRuleController::class, 'store'])->name('exam.grade.system.rule.store');
+        Route::get('/exams/grade/rules', [GradeRuleController::class, 'index'])->name('exam.grade.system.rule.list');
+        Route::post('/exams/grade/rule/delete', [GradeRuleController::class, 'destroy'])->name('exam.grade.system.rule.delete');
     });
 });
 
