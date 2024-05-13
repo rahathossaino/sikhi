@@ -83,12 +83,12 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function (response) {
-                    if(response.sections){
+                    if(response.courses){
                         var sectionsDropdown = $('#course-select');
                         sectionsDropdown.empty(); 
-                        sectionsDropdown.append($('<option>').text('Please select a section').attr('value', 0))
-                        response.sections.forEach(function(section) {
-                            sectionsDropdown.append($('<option>').text(section.section_name).attr('value', section.id));
+                        sectionsDropdown.append($('<option>').text('Please select a course').attr('value', 0))
+                        response.courses.forEach(function(course) {
+                            sectionsDropdown.append($('<option>').text(course.course_name).attr('value', course.id));
                         });
                     }
                 }

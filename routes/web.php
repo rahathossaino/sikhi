@@ -75,6 +75,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/students/profile/{id}', [UserController::class, 'showStudentProfile'])->name('student.profile');
         Route::get('/students/attendance/{id}', [AttendanceController::class, 'showStudentAttendance'])->name('student.attendance');
 
+        //exams
         Route::get('/exams', [ExamController::class, 'index'])->name('exam.list');
     // Route::get('/exams/view/history', function () {
     //     return view('exams.history');
@@ -83,11 +84,15 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::post('/exams/store', [ExamController::class, 'store'])->name('exam.store');
         // Route::post('/exams/delete', [ExamController::class, 'delete'])->name('exam.delete');
-        Route::get('/exams/add-rule', [ExamRuleController::class, 'create'])->name('exam.rule.create');
-        Route::post('/exams/add-rule', [ExamRuleController::class, 'store'])->name('exam.rule.store');
-        Route::get('/exams/edit-rule', [ExamRuleController::class, 'edit'])->name('exam.rule.edit');
-        Route::post('/exams/edit-rule', [ExamRuleController::class, 'update'])->name('exam.rule.update');
-        Route::get('/exams/view-rule', [ExamRuleController::class, 'index'])->name('exam.rule.show');
+
+        //exam rules
+        Route::get('/exams/rules', [ExamRuleController::class, 'index'])->name('exam.rule.list');
+        Route::get('/exams/rules/add', [ExamRuleController::class, 'create'])->name('exam.rule.create');
+        Route::post('/exams/rules/store', [ExamRuleController::class, 'store'])->name('exam.rule.store');
+        Route::get('/exams/rules/edit', [ExamRuleController::class, 'edit'])->name('exam.rule.edit');
+        Route::post('/exams/rules/update', [ExamRuleController::class, 'update'])->name('exam.rule.update');
+
+
         Route::get('/exams/grade/create', [GradingSystemController::class, 'create'])->name('exam.grade.system.create');
         Route::post('/exams/grade/store', [GradingSystemController::class, 'store'])->name('exam.grade.system.store');
         Route::get('/exams/grade', [GradingSystemController::class, 'index'])->name('exam.grade.system.list');
