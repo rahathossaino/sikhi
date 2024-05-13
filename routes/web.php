@@ -15,6 +15,7 @@ use App\Http\Controllers\SchoolSessionController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\UserController;
 
 
@@ -81,7 +82,6 @@ Route::group(['prefix'=>'admin'],function(){
     //     return view('exams.history');
     // });
         Route::get('/exams/add', [ExamController::class, 'create'])->name('exam.create');
-
         Route::post('/exams/store', [ExamController::class, 'store'])->name('exam.store');
         // Route::post('/exams/delete', [ExamController::class, 'delete'])->name('exam.delete');
 
@@ -100,6 +100,10 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('/exams/grade/rule/store', [GradeRuleController::class, 'store'])->name('exam.grade.system.rule.store');
         Route::get('/exams/grade/rules', [GradeRuleController::class, 'index'])->name('exam.grade.system.rule.list');
         Route::post('/exams/grade/rule/delete', [GradeRuleController::class, 'destroy'])->name('exam.grade.system.rule.delete');
+
+        //notice
+        Route::get('/notice/create', [NoticeController::class, 'create'])->name('notice.create');
+        Route::post('/notice/store', [NoticeController::class, 'store'])->name('notice.store');
     });
 });
 
