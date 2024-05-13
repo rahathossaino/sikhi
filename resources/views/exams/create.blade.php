@@ -34,7 +34,7 @@
                                     </div>
                                     <div>
                                         <p class="mt-2">Select class:<sup><i class="bi bi-asterisk text-primary"></i></sup></p>
-                                        <select  class="form-select" name="class_id">
+                                        <select  class="form-select" name="class_id" id="getcoursebyclass">
                                             @isset($classes)
                                                 <option selected disabled>Please select a class</option>
                                                 @foreach ($classes as $school_class)
@@ -44,7 +44,7 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <p class="mt-2">Select course:<sup><i class="bi bi-asterisk text-primary"></i></sup></p>
+                                        <p class="mt-2" >Select course:<sup><i class="bi bi-asterisk text-primary"></i></sup></p>
                                         <select class="form-select" id="course-select" name="course_id">
                                         </select>
                                     </div>
@@ -72,24 +72,29 @@
     </div>
 </div>
 <script>
-    function getCourses(obj) {
-        var class_id = obj.options[obj.selectedIndex].value;
-
-
-        fetch(url)
-        .then((resp) => resp.json())
-        .then(function(data) {
-
-            var courseSelect = document.getElementById('course-select');
-            courseSelect.options.length = 0;
-            data.courses.unshift({'id': 0,'course_name': 'Please select a course'})
-            data.courses.forEach(function(course, key) {
-                courseSelect[key] = new Option(course.course_name, course.id);
-            });
+    
+    $(document).ready(function(){
+        $('#getcoursebyclass').change(function(){
+            var classId = $(this).val(); 
+            var url = '{{ route("get.sections.courses.by.classId", "classId") }}'; 
+            url = url.replace('classId', classId);
+            $.ajax({
+                url:url ,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    if(response.sections){
+                        var sectionsDropdown = $('#course-select');
+                        sectionsDropdown.empty(); 
+                        sectionsDropdown.append($('<option>').text('Please select a section').attr('value', 0))
+                        response.sections.forEach(function(section) {
+                            sectionsDropdown.append($('<option>').text(section.section_name).attr('value', section.id));
+                        });
+                    }
+                }
+            })            
         })
-        .catch(function(error) {
-            console.log(error);
-        });
-    }
+    });
+    
 </script>
 @endsection
