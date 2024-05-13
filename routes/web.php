@@ -33,8 +33,12 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/home',[HomeController::class,'index'])->name('dashboard');
         Route::get('/logout',[AdminAuthController::class,'logout'])->name('admin.logout');
 
-
+        //academic setting
         Route::get('/academics/settings',[AcademicSettingController::class,'index'])->name('academic.setting');
+        Route::post('semester/store',[SemesterController::class,'store'])->name('semester.store');
+        Route::post('attandence/update',[AcademicSettingController::class,'updateAttendanceType'])->name('attatndence.update');
+        Route::post('section/create', [SectionController::class, 'store'])->name('section.create');
+        Route::post('final-marks-submission-status/update', [AcademicSettingController::class, 'updateFinalMarksSubmissionStatus'])->name('final.marks.submission.status.update');
         Route::post('session/store',[SchoolSessionController::class,'store'])->name('session.store');
 
         //class
@@ -42,11 +46,6 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('class/store',[SchoolClassController::class,'store'])->name('class.store');
         Route::get('/class/edit/{id}', [SchoolClassController::class, 'edit'])->name('class.edit');
         Route::post('class/update', [SchoolClassController::class, 'update'])->name('class.update');
-
-        Route::post('semester/store',[SemesterController::class,'store'])->name('semester.store');
-        
-        Route::post('attandence/update',[AcademicSettingController::class,'updateAttendanceType'])->name('attatndence.update');Route::post('section/create', [SectionController::class, 'store'])->name('section.create');
-        
 
 
         //section
