@@ -10,7 +10,7 @@
                     <h1 class="display-6 mb-3"><i class="bi bi-journal-text"></i> Create Syllabus</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Create Syllabus</li>
                         </ol>
                     </nav>
@@ -21,7 +21,7 @@
                             <input type="hidden" name="session_id" value="{{$current_school_session_id}}">
                             <div class="mb-3">
                                 <p>Add Syllabus to class:</p>
-                                <select onchange="getCourses(this);" class="form-select" name="class_id" required>
+                                <select  class="form-select" name="class_id" required id="inputAssignToClass">
                                     @isset($school_classes)
                                         <option selected disabled>Please select a class</option>
                                         @foreach ($school_classes as $school_class)
@@ -55,25 +55,27 @@
     </div>
 </div>
 <script>
-    function getCourses(obj) {
-        var class_id = obj.options[obj.selectedIndex].value;
-
-        var url = "{{route('get.sections.courses.by.classId')}}?class_id=" + class_id 
-
-        fetch(url)
-        .then((resp) => resp.json())
-        .then(function(data) {
-
-            var courseSelect = document.getElementById('course-select');
-            courseSelect.options.length = 0;
-            data.courses.unshift({'id': 0,'course_name': 'Please select a course'})
-            data.courses.forEach(function(course, key) {
-                courseSelect[key] = new Option(course.course_name, course.id);
-            });
+    $(document).ready(function(){
+        $('#inputAssignToClass').change(function(){
+            var classId = $(this).val(); 
+            var url = '{{ route("get.sections.courses.by.classId", "classId") }}'; 
+            url = url.replace('classId', classId);
+            $.ajax({
+                url:url ,
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    if(response.courses){
+                        var sectionsDropdown = $('#course-select');
+                        sectionsDropdown.empty(); 
+                        sectionsDropdown.append($('<option>').text('Please select a course').attr('value', 0))
+                        response.courses.forEach(function(section) {
+                            sectionsDropdown.append($('<option>').text(section.course_name).attr('value', section.id));
+                        });
+                    }
+                }
+            })            
         })
-        .catch(function(error) {
-            console.log(error);
-        });
-    }
+    });
 </script>
 @endsection

@@ -7,12 +7,14 @@ use Illuminate\Support\Facades\Storage;
 
 class SyllabusRepository {
     public function store($request) {
-        // Automatically generate a unique ID for filename...
-        $path = Storage::disk('public')->put('syllabi', $request['file']);
+        $file=$request['file'];
+        $ext=$file->getClientOriginalExtension();
+        $fileName=uniqid().".".$ext;
+        $file->move(public_path()."/upload/syllabus/",$fileName);
         try {
             Syllabus::create([
                 'syllabus_name'           => $request['syllabus_name'],
-                'syllabus_file_path'      => $path,
+                'syllabus_file_path'      => "upload/syllabus/".$fileName,
                 'class_id'                => $request['class_id'],
                 'course_id'               => $request['course_id'],
                 'session_id'              => $request['session_id']

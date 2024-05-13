@@ -63,7 +63,7 @@
                                                                                     <a href="{{ route('student.list') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                                                                         View Students
                                                                                     </a>
-                                                                                    <a href="" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                                                                    <a href="{{ route('routine.list',['class_id' => $school_class->id, 'section_id' => $school_section->id]) }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                                                                         View Routine
                                                                                     </a>
                                                                                 </div>
@@ -90,7 +90,7 @@
                                                             <td>{{$syllabus->syllabus_name}}</td>
                                                             <td>
                                                                 <div class="btn-group" role="group">
-                                                                    <a href="{{asset('storage/'.$syllabus->syllabus_file_path)}}" role="button" class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i> Download</a>
+                                                                    <a href="{{asset($syllabus->syllabus_file_path)}}" role="button" class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i> Download</a>
                                                                 </div>
                                                             </td>
                                                             </tr>

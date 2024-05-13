@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AssignedTeacherController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ExamRuleController;
 use App\Http\Controllers\GradeRuleController;
 use App\Http\Controllers\GradingSystemController;
@@ -16,6 +17,8 @@ use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\NoticeController;
+use App\Http\Controllers\RoutineController;
+use App\Http\Controllers\SyllabusController;
 use App\Http\Controllers\UserController;
 
 
@@ -92,7 +95,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/exams/rules/edit', [ExamRuleController::class, 'edit'])->name('exam.rule.edit');
         Route::post('/exams/rules/update', [ExamRuleController::class, 'update'])->name('exam.rule.update');
 
-
+        //grade
         Route::get('/exams/grade/create', [GradingSystemController::class, 'create'])->name('exam.grade.system.create');
         Route::post('/exams/grade/store', [GradingSystemController::class, 'store'])->name('exam.grade.system.store');
         Route::get('/exams/grade', [GradingSystemController::class, 'index'])->name('exam.grade.system.list');
@@ -104,7 +107,24 @@ Route::group(['prefix'=>'admin'],function(){
         //notice
         Route::get('/notice/create', [NoticeController::class, 'create'])->name('notice.create');
         Route::post('/notice/store', [NoticeController::class, 'store'])->name('notice.store');
+
+
+        // Calendar events
+        Route::get('calendar-event', [EventController::class, 'index'])->name('events.list');
+        Route::post('calendar-crud-ajax', [EventController::class, 'calendarEvents'])->name('events.crud');
+ 
+
+        //syllabus
+        Route::get('/syllabuses', [SyllabusController::class, 'index'])->name('syllabus.list');
+        Route::get('/syllabus/add', [SyllabusController::class, 'create'])->name('syllabus.create');
+        Route::post('/syllabus/store', [SyllabusController::class, 'store'])->name('syllabus.store');
+
+
+        // Routines
+        Route::get('/routines', [RoutineController::class, 'show'])->name('routine.list');
+        Route::get('/routine/add', [RoutineController::class, 'create'])->name('routine.create');
+        Route::post('/routine/store', [RoutineController::class, 'store'])->name('routine.store');
     });
 });
-
+ 
 
