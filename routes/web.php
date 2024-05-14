@@ -3,7 +3,7 @@
 use App\Http\Controllers\AcademicSettingController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AssignedTeacherController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CourseController;
@@ -25,14 +25,13 @@ use App\Http\Controllers\UserController;
 
 
 
-Route::group(['prefix'=>'admin'],function(){
     Route::group(['middlware'=>'guest'],function(){
-        Route::get('/login',[AdminAuthController::class,'login'])->name('admin.login');
-        Route::post('/login',[AdminAuthController::class,'process'])->name('admin.process');
+        Route::get('/',[AuthController::class,'login'])->name('login');
+        Route::post('/login',[AuthController::class,'process'])->name('login.process');
     });
     Route::group(['middleware'=>'auth'],function(){
         Route::get('/home',[HomeController::class,'index'])->name('dashboard');
-        Route::get('/logout',[AdminAuthController::class,'logout'])->name('admin.logout');
+        Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
         //academic setting
         Route::get('/academics/settings',[AcademicSettingController::class,'index'])->name('academic.setting');
@@ -137,7 +136,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/promotions', [PromotionController::class, 'index'])->name('promotions.list');
         Route::get('/promotions/promote', [PromotionController::class, 'create'])->name('promotions.create');
         Route::post('/promotions/promote', [PromotionController::class, 'store'])->name('promotions.store');
+
     });
-});
  
 

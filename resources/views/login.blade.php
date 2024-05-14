@@ -85,8 +85,15 @@
             flex-direction: column;
             align-items: center;
         }
+        .text-danger{
+            font-weight: 600;
+            font-size: medium;
+            color: white;
+            margin-bottom: 0;
+            margin-top: 1.1rem;
+        }
         .signin .logo img{
-            margin-top: 3rem;
+            /* margin-top: 3rem; */
             width: 6.5rem;
             height: 6.5rem;
         }
@@ -180,11 +187,15 @@
                 </div>
             </div>
             <div class="signin">
+                <h5 class="text-danger">
+                    {{ session('error') }}
+                    .
+                </h5>
                 <div class="logo">
                     <img src="{{asset('sikhi/logo.png')}}"/>
                     <h1>Sign in</h1>
                 </div>
-                <form action="{{ route('admin.process')}}" method="post">
+                <form action="{{ route('login.process')}}" method="post">
                     @csrf
                     <div class="input">
                         <label>Email*</label>
@@ -225,6 +236,12 @@
                         'display': "block"
                     });
                 })
+                var session="{{ session('error') }}";
+                if(session){
+                    $('.text-danger').css({
+                        'color':'red'
+                    })
+                }
             })
         </script>
     </body>

@@ -81,7 +81,7 @@
                                     <a class="dropdown-item" href="">
                                         <i class="bi bi-key me-2"></i> Change Password
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('admin.logout') }}">
+                                    <a class="dropdown-item" href="{{ route('logout') }}">
                                         <i class="bi bi-door-open me-2"></i>Logout
                                     </a>
                                 </div>

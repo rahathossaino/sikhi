@@ -8,15 +8,13 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 
-class AdminAuthController extends Controller
+class AuthController extends Controller
 {
     public function login(){
         if(Auth::check()){
-            if(Auth::user()->role=="admin"){
-                return redirect()->back();
-            }
+            return redirect()->back();
         }
-        return view('admin');
+        return view('login');
     }
     public function process(Request $request){
         try{
@@ -26,12 +24,10 @@ class AdminAuthController extends Controller
             ]);
             if($validate->passes()){
                 if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-                    if(Auth::user()->role=="admin"){
-                        if(session('admin_redirect_url')){
-                            return redirect(session('admin_redirect_url'));
-                        }
-                        return redirect()->route('dashboard');
+                    if(session('redirect_url')){
+                        return redirect(session('redirect_url'));
                     }
+                    return redirect()->route('dashboard');
                 }
                 return redirect()->back()->with('error',' Either Email or Password is wrong');
             }
@@ -43,10 +39,8 @@ class AdminAuthController extends Controller
     }
     public function logout(){
         if(Auth::check()){
-            if(Auth::user()->role=="admin"){
-                Auth::logout();
-                return redirect()->route("admin.login");
-            }
+            Auth::logout();
+            return redirect()->route("login");
         }
     }
 }
