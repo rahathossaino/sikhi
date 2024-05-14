@@ -71,7 +71,6 @@ class PromotionController extends Controller
             'currentSessionSectionsCounts'  => $currentSessionSectionsCounts,
             'previousSessionId'             => $previousSession['id'],
         ];
-
         return view('promotions.index', $data);
     }
 

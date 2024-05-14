@@ -135,7 +135,7 @@
                     @endif
                     @if (!session()->has('browse_session_id') && Auth::user()->role == "admin")
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('promotions*')? 'active' : '' }}" href=""><i class="bi bi-sort-numeric-up-alt"></i> <span class="ms-1 d-inline d-sm-none d-md-none d-xl-inline">Promotion</span></a>
+                        <a class="nav-link {{ request()->is('promotions*')? 'active' : '' }}" href="{{ route('promotions.list') }}"><i class="bi bi-sort-numeric-up-alt"></i> <span class="ms-1 d-inline d-sm-none d-md-none d-xl-inline">Promotion</span></a>
                     </li>
                     @endif
                     <li class="nav-item">

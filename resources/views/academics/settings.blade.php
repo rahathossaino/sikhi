@@ -39,7 +39,7 @@
                                     <p class="text-danger">
                                         <small><i class="bi bi-exclamation-diamond-fill me-2"></i> Only use this when you want to browse data from previous Sessions.</small>
                                     </p>
-                                    <form action="" method="POST">
+                                    <form action="{{ route('session.browse') }}" method="POST">
                                         @csrf
                                     <div class="mb-3">
                                         <p class="mt-2">Select "Session" to browse by:</p>

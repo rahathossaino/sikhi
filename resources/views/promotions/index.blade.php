@@ -12,7 +12,7 @@
                     </h1>
                     <h6>Filter list by:</h6>
                     <div class="mb-4 mt-4">
-                        <form action="{{route('promotions.index')}}" method="GET">
+                        <form action="{{route('promotions.list')}}" method="GET">
                             <div class="row">
                                 <div class="col-3">
                                     <select class="form-select" name="class_id" required>

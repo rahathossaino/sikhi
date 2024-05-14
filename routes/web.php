@@ -18,6 +18,7 @@ use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\RoutineController;
+use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\SyllabusController;
 use App\Http\Controllers\UserController;
 
@@ -35,11 +36,17 @@ Route::group(['prefix'=>'admin'],function(){
 
         //academic setting
         Route::get('/academics/settings',[AcademicSettingController::class,'index'])->name('academic.setting');
-        Route::post('semester/store',[SemesterController::class,'store'])->name('semester.store');
         Route::post('attandence/update',[AcademicSettingController::class,'updateAttendanceType'])->name('attatndence.update');
-        Route::post('section/create', [SectionController::class, 'store'])->name('section.create');
         Route::post('final-marks-submission-status/update', [AcademicSettingController::class, 'updateFinalMarksSubmissionStatus'])->name('final.marks.submission.status.update');
+
+
+        //session
         Route::post('session/store',[SchoolSessionController::class,'store'])->name('session.store');
+        Route::post('session/browse', [SchoolSessionController::class, 'browse'])->name('session.browse');
+
+        //semester
+        Route::post('semester/store',[SemesterController::class,'store'])->name('semester.store');
+
 
         //class
         Route::get('/classes', [SchoolClassController::class, 'index'])->name('class.list');
@@ -49,6 +56,7 @@ Route::group(['prefix'=>'admin'],function(){
 
 
         //section
+        Route::post('section/create', [SectionController::class, 'store'])->name('section.create');
         Route::post('section/store', [SectionController::class, 'store'])->name('section.store');
         Route::get('/section/edit/{id}', [SectionController::class, 'edit'])->name('section.edit');
         Route::post('section/update', [SectionController::class, 'update'])->name('section.update');
@@ -123,6 +131,12 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/routines', [RoutineController::class, 'show'])->name('routine.list');
         Route::get('/routine/add', [RoutineController::class, 'create'])->name('routine.create');
         Route::post('/routine/store', [RoutineController::class, 'store'])->name('routine.store');
+
+        
+        //promotion
+        Route::get('/promotions', [PromotionController::class, 'index'])->name('promotions.list');
+        Route::get('/promotions/promote', [PromotionController::class, 'create'])->name('promotions.create');
+        Route::post('/promotions/promote', [PromotionController::class, 'store'])->name('promotions.store');
     });
 });
  
