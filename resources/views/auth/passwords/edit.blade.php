@@ -10,7 +10,7 @@
                     <h1 class="display-6 mb-3"><i class="bi bi-journal-medical"></i> Change Password</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Change Password</li>
                         </ol>
                     </nav>

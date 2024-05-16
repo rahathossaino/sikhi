@@ -34,6 +34,9 @@ use App\Http\Controllers\UserController;
     Route::group(['middleware'=>'auth'],function(){
         Route::get('/home',[HomeController::class,'index'])->name('dashboard');
         Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+        Route::get('/change-password',[AuthController::class,'updatePasword'])->name('password.edit');
+        Route::post('/change-password',[AuthController::class,'processUpdatePasword'])->name('password.update');
+
 
         //academic setting
         Route::get('/academics/settings',[AcademicSettingController::class,'index'])->name('academic.setting');
