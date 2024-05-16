@@ -65,7 +65,6 @@ class UserController extends Controller
                 'studentList'       => $studentList,
                 'school_classes'    => $school_classes,
             ];
-            
             return view('students.list', $data);
         } catch (\Exception $e) {
             return back()->withError($e->getMessage());

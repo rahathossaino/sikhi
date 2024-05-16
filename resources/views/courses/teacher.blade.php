@@ -12,13 +12,13 @@
                     </h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">My courses</li>
                         </ol>
                     </nav>
                     <h6>Filter list by:</h6>
                     <div class="mb-4 mt-4">
-                        <form action="{{route('course.teacher.list.show')}}" method="GET">
+                        <form action="{{route('course.teacher.list')}}" method="GET">
                             <input type="hidden" name="teacher_id" value="{{Auth::user()->id}}">
                             <div class="row">
                                 <div class="col">

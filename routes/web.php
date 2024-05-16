@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AssignedTeacherController;
+use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EventController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\RoutineController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\MarkController;
 use App\Http\Controllers\SyllabusController;
 use App\Http\Controllers\UserController;
 
@@ -110,6 +112,10 @@ use App\Http\Controllers\UserController;
         Route::get('/exams/grade/rules', [GradeRuleController::class, 'index'])->name('exam.grade.system.rule.list');
         Route::post('/exams/grade/rule/delete', [GradeRuleController::class, 'destroy'])->name('exam.grade.system.rule.delete');
 
+
+        //mark
+        Route::get('/marks', [MarkController::class, 'showCourseMark'])->name('course.mark');
+
         //notice
         Route::get('/notice/create', [NoticeController::class, 'create'])->name('notice.create');
         Route::post('/notice/store', [NoticeController::class, 'store'])->name('notice.store');
@@ -137,6 +143,14 @@ use App\Http\Controllers\UserController;
         Route::get('/promotions/promote', [PromotionController::class, 'create'])->name('promotions.create');
         Route::post('/promotions/promote', [PromotionController::class, 'store'])->name('promotions.store');
 
+        //course teacher
+        Route::get('courses/teachers', [AssignedTeacherController::class, 'getTeacherCourses'])->name('course.teacher.list');
+        Route::get('courses/student/{student_id}', [CourseController::class, 'getStudentCourses'])->name('course.student.list');
+
+        // Assignment
+        Route::get('courses/assignments', [AssignmentController::class, 'getCourseAssignments'])->name('assignment.list');
+        Route::get('courses/assignments/create', [AssignmentController::class, 'create'])->name('assignment.create');
+        Route::post('courses/assignments/create', [AssignmentController::class, 'store'])->name('assignment.store');
     });
  
 
