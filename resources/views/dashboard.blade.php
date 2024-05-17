@@ -9,6 +9,7 @@
                 <div class="col ps-4">
                     <!-- <h1 class="display-6 mb-3"><i class="ms-auto bi bi-grid"></i> {{ __('Dashboard') }}</h1> -->
                     <div class="row dashboard">
+                        @if(Auth::user()->role=="admin")
                         <div class="col">
                             <div class="card rounded-pill">
                                 <div class="card-body">
@@ -58,26 +59,28 @@
                             </div>
                         </div> --}}
                     </div>
-                    @if($studentCount > 0)
-                    <div class="mt-3 d-flex align-items-center">
-                        <div class="col-3">
-                            <span class="ps-2 me-2">Students %</span>
-                            <span class="badge rounded-pill border" style="background-color: #0678c8;">Male</span>
-                            <span class="badge rounded-pill border" style="background-color: #49a4fe;">Female</span>
-                        </div>
-                        @php
-                        $maleStudentPercentage = round(($maleStudentsBySession/$studentCount), 2) * 100;
-                        $maleStudentPercentageStyle = "style='background-color: #0678c8; width: $maleStudentPercentage%'";
+                        @if($studentCount > 0)
+                        <div class="mt-3 d-flex align-items-center">
+                            <div class="col-3">
+                                <span class="ps-2 me-2">Students %</span>
+                                <span class="badge rounded-pill border" style="background-color: #0678c8;">Male</span>
+                                <span class="badge rounded-pill border" style="background-color: #49a4fe;">Female</span>
+                            </div>
+                            @php
+                            $maleStudentPercentage = round(($maleStudentsBySession/$studentCount), 2) * 100;
+                            $maleStudentPercentageStyle = "style='background-color: #0678c8; width: $maleStudentPercentage%'";
 
-                        $femaleStudentPercentage = round((($studentCount - $maleStudentsBySession)/$studentCount), 2) * 100;
-                        $femaleStudentPercentageStyle = "style='background-color: #49a4fe; width: $femaleStudentPercentage%'";
-                        @endphp
-                        <div class="col-9 progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" {!!$maleStudentPercentageStyle!!} aria-valuenow="{{$maleStudentPercentage}}" aria-valuemin="0" aria-valuemax="100">{{$maleStudentPercentage}}%</div>
-                            <div class="progress-bar progress-bar-striped" role="progressbar" {!!$femaleStudentPercentageStyle!!} aria-valuenow="{{$femaleStudentPercentage}}" aria-valuemin="0" aria-valuemax="100">{{$femaleStudentPercentage}}%</div>
-                          </div>
-                    </div>
+                            $femaleStudentPercentage = round((($studentCount - $maleStudentsBySession)/$studentCount), 2) * 100;
+                            $femaleStudentPercentageStyle = "style='background-color: #49a4fe; width: $femaleStudentPercentage%'";
+                            @endphp
+                            <div class="col-9 progress">
+                                <div class="progress-bar progress-bar-striped" role="progressbar" {!!$maleStudentPercentageStyle!!} aria-valuenow="{{$maleStudentPercentage}}" aria-valuemin="0" aria-valuemax="100">{{$maleStudentPercentage}}%</div>
+                                <div class="progress-bar progress-bar-striped" role="progressbar" {!!$femaleStudentPercentageStyle!!} aria-valuenow="{{$femaleStudentPercentage}}" aria-valuemin="0" aria-valuemax="100">{{$femaleStudentPercentage}}%</div>
+                            </div>
+                        </div>
+                        @endif
                     @endif
+
                     <div class="row align-items-md-stretch mt-4">
                         <div class="col">
                             <div class="p-3 text-white bg-dark rounded-3">
@@ -88,7 +91,7 @@
                         <div class="col">
                             <div class="p-3 bg-white border rounded-3" style="height: 100%;">
                                 <h3>Manage school better</h3>
-                                <p class="text-end">with <i class="bi bi-lightning"></i> <a href="https://github.com/changeweb/Unifiedtransform" target="_blank" style="text-decoration: none;">Sikhi</a> <i class="bi bi-lightning"></i>.</p>
+                                <p class="text-end">with <i class="bi bi-lightning"></i> <a href="" style="text-decoration: none;">Sikhi</a> <i class="bi bi-lightning"></i>.</p>
                             </div>
                         </div>
                     </div>
@@ -120,9 +123,22 @@
                                     <div>
                                         @isset($notices)
                                         <div class="accordion accordion-flush" id="noticeAccordion">
-                                            
+                                            @foreach ($notices as $notice)
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="flush-heading{{$notice->id}}">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{$notice->id}}" aria-expanded={{($loop->first)?"true":"false"}} aria-controls="flush-collapse{{$notice->id}}">
+                                                        Published at: {{$notice->created_at}}
+                                                    </button>
+                                                </h2>
+                                                <div id="flush-collapse{{$notice->id}}" class="accordion-collapse collapse {{($loop->first)?"show":"hide"}}" aria-labelledby="flush-heading{{$notice->id}}" data-bs-parent="#noticeAccordion">
+                                                    <div class="accordion-body overflow-auto">{!! \Mews\Purifier\Facades\Purifier::clean($notice->notice)!!}</div>
+                                                </div>
+                                            </div>
+                                            @endforeach
                                             @endisset
-                                            
+                                            @if(count($notices) < 1)
+                                                <div class="p-3">No notices</div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

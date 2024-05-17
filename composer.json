@@ -8,6 +8,7 @@
         "php": "^8.2",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
+        "mews/purifier": "^3.4",
         "spatie/laravel-permission": "^6.7"
     },
     "require-dev": {

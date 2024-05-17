@@ -45,7 +45,7 @@ class HomeController extends Controller
             'notices'       => $notices,
             'maleStudentsBySession' => $maleStudentsBySession,
         ];
-
+        // return response()->json(['notices'=>$notices->data]);
         return view('dashboard', $data);
     }
 }

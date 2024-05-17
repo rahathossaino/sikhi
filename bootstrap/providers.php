@@ -10,4 +10,5 @@ return [
     App\Providers\SemesterProvider::class,
     App\Providers\UserProvider::class,
     Spatie\Permission\PermissionServiceProvider::class,
+    Mews\Purifier\PurifierServiceProvider::class,
 ];
