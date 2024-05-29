@@ -14,16 +14,14 @@ See the news [here](https://laravel-news.com/unified-transform-open-source-schoo
 
 ## Framework used
 
-- [Laravel 8.X](https://laravel.com/docs/8.x)
+- [Laravel 11.X](https://laravel.com/docs/11.x)
 - [Bootstrap 5.X](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 
-<h1 align="center"><img src="public/docs/imgs/ut/Screenshot 2021-12-07 at 01-39-17 Unifiedtransform.png"></h1>
-
 ##  Requirements
--PHP (latest stable version)
--Composer
--Laravel (latest stable version)
--MySql
+- PHP (latest stable version)
+- Composer
+- Laravel (latest stable version)
+- MySql
 
 
 ## Steps to follow:
@@ -37,17 +35,7 @@ Please carefully follow the steps to setup the school.
         <p>php artisan migrate</p>
     <li>Serve the Application</li>
     <p>php artisan serve</p>
-    <p>Visit http://127.0.0.1:8000 in your browser to see the application.</p>
-
-## Contribute
-
-Sikhi is 100% open source and free forever!!
-
-Community contribution can make this product better!!
-
-<img width="100%" src="https://repobeats.axiom.co/api/embed/d90fe8b75d73579b62d26d3097cd29ac0147e77d.svg" alt="Repobeats analytics image" />
-
-When you contribute to a Github project you agree with this terms of [Github Terms of Service(Contributions Under Repository License)](https://help.github.com/en/articles/github-terms-of-service#6-contributions-under-repository-license).
+    <p>Visit http://127.0.0.1:8000 in your browser to see the application.</p
 
 
  Visit **http://localhost:8080**. Admin login credentials:
