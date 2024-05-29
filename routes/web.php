@@ -92,12 +92,9 @@ use App\Http\Controllers\UserController;
 
         //exams
         Route::get('/exams', [ExamController::class, 'index'])->name('exam.list');
-    // Route::get('/exams/view/history', function () {
-    //     return view('exams.history');
-    // });
+
         Route::get('/exams/add', [ExamController::class, 'create'])->name('exam.create');
         Route::post('/exams/store', [ExamController::class, 'store'])->name('exam.store');
-        // Route::post('/exams/delete', [ExamController::class, 'delete'])->name('exam.delete');
 
         //exam rules
         Route::get('/exams/rules', [ExamRuleController::class, 'index'])->name('exam.rule.list');
